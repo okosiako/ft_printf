@@ -20,6 +20,7 @@ void		ft_s(const char *format, t_param *elem, va_list param)
 	elem->sign = NULL;
 	res = NULL;
 	wres = NULL;
+	elem->flag = NULL;
 	if (format)
 	{
 		if (elem->type == 's')
@@ -48,6 +49,7 @@ void		ft_c(const char *format, t_param *elem, va_list param)
 
 	elem->sign = NULL;
 	elem->res = 1;
+	elem->flag = NULL;
 	if (elem->type == 'C')
 	{
 		wch = va_arg(param, wchar_t);

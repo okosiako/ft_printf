@@ -36,7 +36,7 @@ int					ft_putnbr_l(long long n);
 void				ft_s(const char *format, t_param *elem, va_list param);
 void				ft_c(const char *format, t_param *elem, va_list param);
 void				ft_xopu(const char *format, t_param *elem, va_list param);
-intmax_t			ft_data_x(const char *format, t_param *elem, va_list param);
+uintmax_t			ft_data_x(const char *format, t_param *elem, va_list param);
 void				ft_di(const char *format, t_param *elem, va_list param);
 intmax_t			ft_data(const char *format, t_param *elem, va_list param);
 void				*ft_create_set(int c, size_t n);

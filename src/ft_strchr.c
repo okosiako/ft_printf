@@ -17,10 +17,10 @@ char	*ft_strchr(const char *str, int c)
 	char			*st;
 	unsigned int	index;
 
-	st = (char *)str;
 	index = 0;
-	if (st)
+	if (str)
 	{
+		st = (char *)str;
 		while (st[index])
 		{
 			if (st[index] == (char)c)

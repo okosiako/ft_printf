@@ -52,9 +52,10 @@ void		ft_di(const char *format, t_param *elem, va_list param)
 	else
 		elem->data = NULL;
 	COUNTER(num, 10, elem->res);
+	elem->flag = NULL;
 }
 
-intmax_t	ft_data_x(const char *format, t_param *elem, va_list param)
+uintmax_t	ft_data_x(const char *format, t_param *elem, va_list param)
 {
 	if (ft_strcmp(ft_strchr(format, 'h'), ft_strrchr(format, 'h')) ||
 		ft_strcmp(ft_strchr(format, 'l'), ft_strrchr(format, 'l')))
@@ -91,4 +92,5 @@ void		ft_xopu(const char *format, t_param *elem, va_list param)
 	elem->sign = (elem->type == 'p') ? ft_strdup("0x") : NULL;
 	elem->res = ft_strlen(res);
 	elem->data = (void *)res;
+	elem->flag = NULL;
 }
