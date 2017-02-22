@@ -31,7 +31,7 @@ void		ft_s(const char *format, t_param *elem, va_list param)
 	}
 	else
 	{
-		res =va_arg(param, char *);
+		res = va_arg(param, char *);
 		if (!res)
 			res = "(null)";
 		elem->res = ft_strlen(res);
@@ -58,5 +58,4 @@ void		ft_c(const char *format, t_param *elem, va_list param)
 					(void *)(size_t)ch : NULL;
 		elem->type = 'c';
 	}
-	
 }

@@ -91,5 +91,4 @@ void		ft_xopu(const char *format, t_param *elem, va_list param)
 	elem->sign = (elem->type == 'p') ? ft_strdup("0x") : NULL;
 	elem->res = ft_strlen(res);
 	elem->data = (void *)res;
-	//elem->flag = NULL;
 }

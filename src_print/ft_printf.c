@@ -15,10 +15,8 @@
 void	ft_choose(const char *format, char **temp)
 {
 	size_t	index;
-	_Bool	un_conv;
 
 	index = 1;
-	un_conv = 0;
 	while (format[index])
 	{
 		if (ft_strchr(CONV, format[index]))
