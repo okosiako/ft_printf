@@ -66,7 +66,7 @@ int			ft_print(int *par, t_param *e)
 	res += ft_strchr(e->flag, '-') ? ft_putstr(e->width) : 0;
 	return (res);
 }
-
+#include <stdio.h>
 int			ft_make_elem(int *par, t_param *e)
 {
 	int res;
@@ -82,12 +82,13 @@ int			ft_make_elem(int *par, t_param *e)
 	if (ft_strchr(e->flag, ' ') && !ft_strchr(e->flag, '+') && !e->sign &&
 		ft_strchr("diD", e->type))
 		e->sign = ft_strdup(" ");
-	if (ft_strchr(e->flag, '#') && ft_strchr("xXoO", e->type)
-		&& e->data && ((char *)e->data)[0] != '0')
+	if (ft_strchr(e->flag, '#') && ft_strchr("xXoO", e->type))
 	{
-		if (ft_strchr("xX", e->type))
+		if (ft_strchr("xX", e->type) && e->data && ((char *)e->data)[0] != '0')
 			e->sign = ft_strdup((e->type == 'x') ? "0x" : "0X");
-		else if (ft_strchr("oO", e->type) && !e->prec)
+		else if ((ft_strchr("oO", e->type) && e->data && !e->prec &&
+		((char *)e->data)[0] != '0')
+		|| (ft_strchr("oO", e->type) && !par[1] && !e->data && ft_strchr(e->flag, '#')))
 			e->sign = ft_strdup("0");
 	}
 	ft_width(e->flag, e, par[0]);

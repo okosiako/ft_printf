@@ -15,8 +15,10 @@
 void	ft_choose(const char *format, char **temp)
 {
 	size_t	index;
+	_Bool	un_conv;
 
 	index = 1;
+	un_conv = 0;
 	while (format[index])
 	{
 		if (ft_strchr(CONV, format[index]))
@@ -25,6 +27,12 @@ void	ft_choose(const char *format, char **temp)
 			return ;
 		}
 		else if (!ft_strchr("hljz", format[index]) && ft_isalpha(format[index]))
+		{
+			*temp = ft_strsub(format, 0, index + 1);
+			return ;
+		}
+		else if (!ft_isdigit(format[index]) &&
+			!ft_strchr("%+- #.*", format[index]) && !ft_isalpha(format[index]))
 		{
 			*temp = ft_strsub(format, 0, index + 1);
 			return ;

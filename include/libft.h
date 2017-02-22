@@ -35,7 +35,7 @@ typedef struct		s_list
 }					t_list;
 
 char				*ft_itoa_base(long long num, char base, int b);
-char				*ft_uitoa_base(size_t num, char base, int b);
+char				*ft_uitoa_base(unsigned long long num, char base, int b);
 int					ft_wputstr(const wchar_t *wstr, int size);
 size_t				ft_wstrlen(const wchar_t *s);
 int					ft_wputchar(const uint32_t symbol);

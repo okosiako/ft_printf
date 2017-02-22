@@ -36,12 +36,12 @@ char	*ft_itoa_base(long long num, char base, int b)
 	return (res);
 }
 
-char	*ft_uitoa_base(size_t num, char base, int b)
+char	*ft_uitoa_base(unsigned long long num, char base, int b)
 {
-	char		*res;
-	char		*base_base;
-	size_t		size;
-	long long	temp;
+	char				*res;
+	char				*base_base;
+	size_t				size;
+	unsigned long long	temp;
 
 	res = NULL;
 	base_base = (base <= 'Z') ? "0123456789ABCDEF" : "0123456789abcdef";

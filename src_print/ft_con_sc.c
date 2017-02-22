@@ -20,25 +20,22 @@ void		ft_s(const char *format, t_param *elem, va_list param)
 	elem->sign = NULL;
 	res = NULL;
 	wres = NULL;
-	elem->flag = NULL;
-	if (format)
+	if (elem->type == 'S' || (elem->type == 's' && ft_strchr(format, 'l')))
 	{
-		if (elem->type == 's')
-		{
-			res = va_arg(param, char *);
-			if (!res)
-				res = ft_strdup("(null)");
-			elem->res = ft_strlen(res);
-			elem->data = (void *)res;
-		}
-		else if (elem->type == 'S')
-		{
-			wres = va_arg(param, wchar_t *);
-			if (!wres)
-				wres = NULL;
-			elem->res = ft_wstrlen(wres);
-			elem->data = (void *)wres;
-		}
+		wres = va_arg(param, wchar_t *);
+		if (!wres)
+			wres = NULL;
+		elem->res = ft_wstrlen(wres);
+		elem->data = (void *)wres;
+		elem->type = 'S';
+	}
+	else
+	{
+		res =va_arg(param, char *);
+		if (!res)
+			res = "(null)";
+		elem->res = ft_strlen(res);
+		elem->data = (void *)ft_strdup(res);
 	}
 }
 
@@ -49,8 +46,7 @@ void		ft_c(const char *format, t_param *elem, va_list param)
 
 	elem->sign = NULL;
 	elem->res = 1;
-	elem->flag = NULL;
-	if (elem->type == 'C')
+	if (elem->type == 'C' || (elem->type == 'c' && ft_strchr(format, 'l')))
 	{
 		wch = va_arg(param, wchar_t);
 		elem->data = (!wch) ? NULL : (void *)(size_t)wch;
@@ -60,5 +56,7 @@ void		ft_c(const char *format, t_param *elem, va_list param)
 		ch = (elem->type == 'c') ? va_arg(param, int) : elem->type;
 		elem->data = (ch || (!ch && !ft_strchr(format, '.'))) ?
 					(void *)(size_t)ch : NULL;
+		elem->type = 'c';
 	}
+	
 }
