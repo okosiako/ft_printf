@@ -98,10 +98,10 @@ $(NAME) : $(OBJECTS_1) $(OBJECTS_2) $(HEADERS_1)
 
 clean :
 	rm -f $(OBJECTS_1) $(OBJECTS_2)
+	rm -rf $(OBJECTS_FLD)
 
 fclean : clean
 	rm -f $(NAME)
-	rm -rf $(OBJECTS_FLD)
 
 re : fclean all
 

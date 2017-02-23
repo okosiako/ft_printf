@@ -12,59 +12,59 @@
 
 #include "libft.h"
 
-static void	ft_wputchar_2(const uint32_t symbol, char *rt)
+static void	ft_wputchar_2(const uint32_t c, char *str)
 {
-	if (symbol <= BIT21)
+	if (c <= BIT21)
 	{
-		rt[0] = ((symbol & 1835008) >> 18) | 240;
-		rt[1] = ((symbol & 258048) >> 12) | 128;
-		rt[2] = ((symbol & 4032) >> 6) | 128;
-		rt[3] = (symbol & 63) | 128;
+		str[0] = ((c & 1835008) >> 18) | 240;
+		str[1] = ((c & 258048) >> 12) | 128;
+		str[2] = ((c & 4032) >> 6) | 128;
+		str[3] = (c & 63) | 128;
 	}
-	else if (symbol <= BIT26)
+	else if (c <= BIT26)
 	{
-		rt[0] = ((symbol & 50331648) >> 24) | 248;
-		rt[1] = ((symbol & 16515072) >> 18) | 128;
-		rt[2] = ((symbol & 258048) >> 12) | 128;
-		rt[3] = ((symbol & 4032) >> 6) | 128;
-		rt[4] = (symbol & 63) | 128;
+		str[0] = ((c & 50331648) >> 24) | 248;
+		str[1] = ((c & 16515072) >> 18) | 128;
+		str[2] = ((c & 258048) >> 12) | 128;
+		str[3] = ((c & 4032) >> 6) | 128;
+		str[4] = (c & 63) | 128;
 	}
 	else
 	{
-		rt[0] = ((symbol & 1073741824) >> 30) | 252;
-		rt[1] = ((symbol & 1056964608) >> 24) | 128;
-		rt[2] = ((symbol & 16515072) >> 18) | 128;
-		rt[3] = ((symbol & 258048) >> 12) | 128;
-		rt[4] = ((symbol & 4032) >> 6) | 128;
-		rt[5] = (symbol & 63) | 128;
+		str[0] = ((c & 1073741824) >> 30) | 252;
+		str[1] = ((c & 1056964608) >> 24) | 128;
+		str[2] = ((c & 16515072) >> 18) | 128;
+		str[3] = ((c & 258048) >> 12) | 128;
+		str[4] = ((c & 4032) >> 6) | 128;
+		str[5] = (c & 63) | 128;
 	}
 }
 
-int			ft_wputchar(const uint32_t symbol)
+int			ft_wputchar(const uint32_t c)
 {
-	char		*rt;
-	int			ct;
+	char		*str;
+	int			res;
 
-	rt = ft_strnew(6);
-	ct = 0;
-	if (symbol <= BIT7)
-		rt[0] = symbol;
-	else if (symbol <= BIT11)
+	str = ft_strnew(6);
+	res = 0;
+	if (c <= BIT7)
+		str[0] = c;
+	else if (c <= BIT11)
 	{
-		rt[0] = ((symbol & 1984) >> 6) | 192;
-		rt[1] = (symbol & 63) | 128;
+		str[0] = ((c & 1984) >> 6) | 192;
+		str[1] = (c & 63) | 128;
 	}
-	else if (symbol <= BIT16)
+	else if (c <= BIT16)
 	{
-		rt[0] = ((symbol & 61440) >> 12) | 224;
-		rt[1] = ((symbol & 4032) >> 6) | 128;
-		rt[2] = (symbol & 63) | 128;
+		str[0] = ((c & 61440) >> 12) | 224;
+		str[1] = ((c & 4032) >> 6) | 128;
+		str[2] = (c & 63) | 128;
 	}
 	else
-		ft_wputchar_2(symbol, rt);
-	ct = write(1, rt, sizeof(char)) + write(1, &rt[1], ft_strlen(&rt[1]));
-	ft_strdel(&rt);
-	return (ct);
+		ft_wputchar_2(c, str);
+	res = write(1, str, sizeof(char)) + write(1, &str[1], ft_strlen(&str[1]));
+	ft_strdel(&str);
+	return (res);
 }
 
 int			ft_wputstr(const wchar_t *wstr, int size)
