@@ -6,7 +6,7 @@
 /*   By: okosiako <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 16:41:13 by okosiako          #+#    #+#             */
-/*   Updated: 2017/02/21 16:41:16 by okosiako         ###   ########.fr       */
+/*   Updated: 2017/02/23 10:34:52 by okosiako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void		ft_c(const char *format, t_param *elem, va_list param)
 	{
 		wch = va_arg(param, wchar_t);
 		elem->data = (!wch) ? NULL : (void *)(size_t)wch;
+		elem->type = 'C';
 	}
 	else
 	{
